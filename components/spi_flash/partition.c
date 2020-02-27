@@ -82,7 +82,7 @@ static esp_err_t ensure_partitions_loaded(void)
     return err;
 }
 
-esp_partition_iterator_t esp_partition_find(esp_partition_type_t type,
+esp_partition_iterator_t esp_partition_find(uint8_t type,
         esp_partition_subtype_t subtype, const char* label)
 {
     if (ensure_partitions_loaded() != ESP_OK) {
@@ -130,7 +130,7 @@ esp_partition_iterator_t esp_partition_next(esp_partition_iterator_t it)
     return it;
 }
 
-const esp_partition_t* esp_partition_find_first(esp_partition_type_t type,
+const esp_partition_t* esp_partition_find_first(uint8_t type,
         esp_partition_subtype_t subtype, const char* label)
 {
     esp_partition_iterator_t it = esp_partition_find(type, subtype, label);
