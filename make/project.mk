@@ -235,8 +235,8 @@ OBJDUMP ?= objdump
 SIZE ?= size
 
 # Set host compiler and binutils
-HOSTCC := $(CC)
-HOSTLD := $(LD)
+HOSTCC := "$(CC) -arch x86_64"
+HOSTLD := "$(LD) -arch x86_64"
 HOSTAR := $(AR)
 HOSTOBJCOPY := $(OBJCOPY)
 HOSTSIZE := $(SIZE)
