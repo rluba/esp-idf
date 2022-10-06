@@ -14,6 +14,8 @@
 
 #include "hal/i2c_hal.h"
 
+#include "esp_attr.h"
+
 void i2c_hal_txfifo_rst(i2c_hal_context_t *hal)
 {
     i2c_ll_txfifo_rst(hal->dev);
@@ -64,7 +66,7 @@ void i2c_hal_disable_intr_mask(i2c_hal_context_t *hal, uint32_t mask)
     i2c_ll_disable_intr_mask(hal->dev, mask);
 }
 
-void i2c_hal_get_intsts_mask(i2c_hal_context_t *hal, uint32_t *mask)
+void IRAM_ATTR i2c_hal_get_intsts_mask(i2c_hal_context_t *hal, uint32_t *mask)
 {
     *mask = i2c_ll_get_intsts_mask(hal->dev);
 }
