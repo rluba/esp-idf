@@ -14,6 +14,8 @@
 
 #include "hal/i2c_hal.h"
 
+#include "esp_attr.h"
+
 void i2c_hal_txfifo_rst(i2c_hal_context_t *hal)
 {
     i2c_ll_txfifo_rst(hal->dev);
