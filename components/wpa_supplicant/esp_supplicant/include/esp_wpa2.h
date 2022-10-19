@@ -180,6 +180,7 @@ esp_err_t esp_wifi_sta_wpa2_ent_set_ca_cert(const unsigned char *ca_cert, int ca
 __attribute__((deprecated("Use 'esp_eap_client_clear_ca_cert' instead")))
 void esp_wifi_sta_wpa2_ent_clear_ca_cert(void);
 
+void esp_wifi_sta_wpa2_ent_set_ca_cert_callback(int (*ca_cert_callback)(void *conf));
 /**
   * @brief  Set client certificate and key.
   *

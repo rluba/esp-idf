@@ -71,6 +71,7 @@ static void eap_tls_params_from_conf1(struct tls_connection_params *params,
 {
 	params->ca_cert = (char *) config->ca_cert;
 	params->ca_path = (char *) config->ca_path;
+	params->ca_cert_callback = config->ca_cert_callback;
 	params->client_cert = (char *) config->client_cert;
 	params->private_key = (char *) config->private_key;
 	params->private_key_passwd = (char *) config->private_key_passwd;

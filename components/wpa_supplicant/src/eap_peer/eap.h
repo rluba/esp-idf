@@ -32,6 +32,7 @@ extern int g_wpa_private_key_passwd_len;
 
 extern const u8 *g_wpa_ca_cert;
 extern int g_wpa_ca_cert_len;
+extern int (*g_wpa_ca_cert_callback)(void *conf);
 
 extern u8 *g_wpa_password;
 extern int g_wpa_password_len;

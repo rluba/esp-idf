@@ -192,6 +192,9 @@ esp_err_t esp_eap_client_set_ca_cert(const unsigned char *ca_cert, int ca_cert_l
  */
 void esp_eap_client_clear_ca_cert(void);
 
+
+void esp_eap_client_set_ca_cert_callback(int (*ca_cert_callback)(void *conf));
+
 /**
  * @brief Set client certificate and private key for EAP authentication.
  *

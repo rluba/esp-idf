@@ -184,6 +184,7 @@ struct tls_connection_params {
 	const u8 *ca_cert_blob;
 	size_t ca_cert_blob_len;
 	const char *ca_path;
+    int (*ca_cert_callback)(void *conf);
 	const char *subject_match;
 	const char *altsubject_match;
 	const char *suffix_match;

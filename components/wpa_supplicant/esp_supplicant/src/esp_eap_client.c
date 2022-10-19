@@ -73,6 +73,8 @@ static void *s_wpa2_api_lock = NULL;
 static void *s_wifi_wpa2_sync_sem = NULL;
 static bool s_disable_time_check = true;
 
+int (*g_wpa_ca_cert_callback)(void *conf);
+
 static void wpa2_api_lock(void)
 {
     if (s_wpa2_api_lock == NULL) {
@@ -714,6 +716,10 @@ static int eap_peer_sm_init(void)
         goto _err;
     }
 
+    if (g_wpa_ca_cert_callback != NULL) {
+        sm->config.ca_cert_callback = g_wpa_ca_cert_callback;
+    }
+
     sm->ssl_ctx = tls_init(NULL);
     if (sm->ssl_ctx == NULL) {
         wpa_printf(MSG_WARNING, "SSL: Failed to initialize TLS context.");
@@ -948,6 +954,10 @@ void esp_eap_client_clear_ca_cert(void)
 {
     g_wpa_ca_cert = NULL;
     g_wpa_ca_cert_len = 0;
+}
+
+void esp_eap_client_set_ca_cert_callback(int (*ca_cert_callback)(void *conf)) {
+    g_wpa_ca_cert_callback = ca_cert_callback;
 }
 
 #define ANONYMOUS_ID_LEN_MAX 128
