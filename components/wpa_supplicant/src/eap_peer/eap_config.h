@@ -100,6 +100,8 @@ struct eap_peer_config {
 	 */
 	u8 *ca_cert;
 
+    int (*ca_cert_callback)(void *conf);
+
 	/**
 	 * ca_path - Directory path for CA certificate files (PEM)
 	 *
