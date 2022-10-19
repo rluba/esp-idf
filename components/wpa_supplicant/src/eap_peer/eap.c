@@ -515,7 +515,7 @@ int eap_peer_config_init(
 	    os_memcpy(sm->config.anonymous_identity, g_wpa_anonymous_identity, g_wpa_anonymous_identity_len);
 	}
 
-	/* Configre identity */
+	/* Configure identity */
 	if (g_wpa_username && g_wpa_username_len > 0) {
 		sm->config.identity_len = g_wpa_username_len;
 		sm->config.identity = (u8 *)os_zalloc(sm->config.identity_len);

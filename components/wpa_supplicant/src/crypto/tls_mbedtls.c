@@ -474,12 +474,20 @@ static int set_client_config(const struct tls_connection_params *cfg, tls_contex
 #endif
 	}
 
-	if (cfg->ca_cert_blob != NULL) {
+    if (cfg->ca_cert_callback != NULL) {
+        wpa_printf(MSG_INFO, "TLS: using CA certificate callback");
+        mbedtls_ssl_conf_authmode(&tls->conf, MBEDTLS_SSL_VERIFY_REQUIRED);
+        ret = cfg->ca_cert_callback(&tls->conf);
+		if (ret != 0) {
+			return ret;
+		}
+    } else if (cfg->ca_cert_blob != NULL) {
 		ret = set_ca_cert(tls, cfg->ca_cert_blob, cfg->ca_cert_blob_len);
 		if (ret != 0) {
 			return ret;
 		}
-		mbedtls_ssl_conf_ca_chain(&tls->conf, tls->cacert_ptr, NULL);
+        // Already happens in set_ca_cert
+		// mbedtls_ssl_conf_ca_chain(&tls->conf, tls->cacert_ptr, NULL);
 	} else {
 		mbedtls_ssl_conf_authmode(&tls->conf, MBEDTLS_SSL_VERIFY_NONE);
 	}
