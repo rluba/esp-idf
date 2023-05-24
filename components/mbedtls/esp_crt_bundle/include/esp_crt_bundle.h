@@ -15,6 +15,18 @@
 extern "C" {
 #endif
 
+// Expose more stuff so that we can use it our own functions
+#define BUNDLE_HEADER_OFFSET 2
+#define CRT_HEADER_OFFSET 4
+
+typedef struct crt_bundle_t {
+    const uint8_t **crts;
+    uint16_t num_certs;
+    size_t x509_crt_bundle_len;
+} crt_bundle_t;
+
+esp_err_t esp_crt_bundle_init(const uint8_t *x509_bundle, size_t bundle_size);
+int esp_crt_check_signature(mbedtls_x509_crt *child, const uint8_t *pub_key_buf, size_t pub_key_len);
 
 /**
  * @brief      Attach and enable use of a bundle for certificate verification
