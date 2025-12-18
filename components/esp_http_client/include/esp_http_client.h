@@ -265,6 +265,9 @@ esp_http_client_handle_t esp_http_client_init(const esp_http_client_config_t *co
  */
 esp_err_t esp_http_client_perform(esp_http_client_handle_t client);
 
+esp_err_t esp_http_client_connect(esp_http_client_handle_t client);
+esp_err_t esp_http_client_request_send(esp_http_client_handle_t client, int write_len);
+
 /**
  * @brief       Cancel an ongoing HTTP request. This API closes the current socket and opens a new socket with the same esp_http_client context.
  *
