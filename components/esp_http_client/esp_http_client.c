@@ -1677,6 +1677,9 @@ esp_err_t esp_http_client_set_post_field(esp_http_client_handle_t client, const 
     } else {
         client->post_len = 0;
         err = esp_http_client_set_header(client, "Content-Type", NULL);
+        if (err == ESP_ERR_NOT_FOUND) {
+            err = ESP_OK;
+        }
     }
     return err;
 }
