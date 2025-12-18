@@ -182,8 +182,8 @@ static const char *HTTP_METHOD_MAPPING[] = {
     "MKCOL"
 };
 
-static esp_err_t esp_http_client_request_send(esp_http_client_handle_t client, int write_len);
-static esp_err_t esp_http_client_connect(esp_http_client_handle_t client);
+esp_err_t esp_http_client_request_send(esp_http_client_handle_t client, int write_len);
+esp_err_t esp_http_client_connect(esp_http_client_handle_t client);
 static esp_err_t esp_http_client_send_post_data(esp_http_client_handle_t client);
 
 static esp_err_t http_dispatch_event(esp_http_client_t *client, esp_http_client_event_id_t event_id, void *data, int len)
@@ -1411,7 +1411,7 @@ int64_t esp_http_client_fetch_headers(esp_http_client_handle_t client)
     return client->response->content_length;
 }
 
-static esp_err_t esp_http_client_connect(esp_http_client_handle_t client)
+esp_err_t esp_http_client_connect(esp_http_client_handle_t client)
 {
     esp_err_t err;
 
@@ -1521,7 +1521,7 @@ static int http_client_prepare_first_line(esp_http_client_handle_t client, int w
     return first_line_len;
 }
 
-static esp_err_t esp_http_client_request_send(esp_http_client_handle_t client, int write_len)
+esp_err_t esp_http_client_request_send(esp_http_client_handle_t client, int write_len)
 {
     int first_line_len = 0;
     if (!client->first_line_prepared) {
